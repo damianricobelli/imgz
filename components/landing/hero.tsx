@@ -134,7 +134,7 @@ export function Hero() {
                     # With gradient background
                   </span>
                   <pre className="mt-1 text-primary">
-                    https://imgz.io/800x600?gradient=6d28d9-4c1d95
+                    https://imgz.io/800x600?bg=6d28d9-4c1d95
                   </pre>
                 </div>
               </div>
