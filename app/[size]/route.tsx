@@ -7,7 +7,7 @@ import sharp from "sharp";
 
 const font = readFileSync("./public/fonts/Inter-Regular.ttf");
 
-export const runtime = "edge";
+// export const runtime = "edge";
 
 export async function GET(
   request: NextRequest,
