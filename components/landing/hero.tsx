@@ -71,7 +71,7 @@ export function Hero() {
             className="text-xl text-muted-foreground mb-8 max-w-3xl mx-auto"
           >
             Create custom placeholder images on-the-fly with a simple URL.
-            Specify text, font, colors and background with just query
+            Specify text, font, colors, format and background with just query
             parameters.
           </motion.p>
 
