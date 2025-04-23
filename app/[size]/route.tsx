@@ -2,8 +2,11 @@ import { ImageResponse } from "next/og";
 import { type NextRequest } from "next/server";
 import { getContrastColor } from "@/lib/get-contrast-color";
 import satori from "satori";
-import { Font } from "@/lib/fonts";
 import { readFileSync } from "node:fs";
+import sharp from "sharp";
+import { Font } from "@/lib/fonts";
+
+export const runtime = "nodejs";
 
 export async function GET(
   request: NextRequest,
@@ -13,13 +16,13 @@ export async function GET(
     const { searchParams } = new URL(request.url);
 
     const format = searchParams.get("format") || "png";
-    const font = searchParams.get("font") || "lato";
+    const fontName = searchParams.get("font") || "lato";
 
-    if (!Object.hasOwn(fonts, font)) {
-      throw new Error(`Invalid font: ${font}`);
+    if (!Object.hasOwn(fonts, fontName)) {
+      throw new Error(`Invalid font: ${fontName}`);
     }
 
-    const fontData = await fonts[font as keyof typeof fonts];
+    const fontData = fonts[fontName as keyof typeof fonts];
 
     const sizeParam = await params;
     const [widthStr, heightStr] = sizeParam.size.split("x");
@@ -87,6 +90,8 @@ export async function GET(
           {
             name: "sans-serif",
             data: fontData,
+            weight: 400,
+            style: "normal",
           },
         ],
       });
@@ -98,16 +103,36 @@ export async function GET(
       });
     }
 
-    return new ImageResponse(template, {
+    const imageResponse = new ImageResponse(template, {
       width,
       height,
       fonts: [
         {
           name: "sans-serif",
           data: fontData,
+          weight: 400,
+          style: "normal",
         },
       ],
+      headers: {
+        "Content-Type": `image/${format}`,
+      },
     });
+
+    if (format === "jpg") {
+      const pngBuffer = await imageResponse.arrayBuffer();
+      const jpgBuffer = await sharp(Buffer.from(pngBuffer))
+        .jpeg({ quality: 80 })
+        .toBuffer();
+
+      return new Response(jpgBuffer, {
+        headers: {
+          "Content-Type": "image/jpeg",
+        },
+      });
+    }
+
+    return imageResponse;
   } catch (error) {
     console.error(error);
     return new Response("Failed to generate image", { status: 500 });
