@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://imgz.io/200x200?text=imgz&bg=f97316" alt="imgz logo" width="200" height="200" />
+  <img src="https://imgz.app/200x200?text=imgz&bg=f97316" alt="imgz logo" width="200" height="200" />
   <h1>imgz</h1>
   <p>Simple, powerful placeholder images through URLs</p>
   
@@ -23,7 +23,7 @@
 Generate a placeholder image by visiting:
 
 ```
-https://imgz.io/600x400
+https://imgz.app/600x400
 ```
 
 This will create a 600x400 pixel image with the default orange background and "imgz" text.
@@ -33,41 +33,41 @@ This will create a 600x400 pixel image with the default orange background and "i
 ### Basic Usage
 
 ```
-https://imgz.io/400x300
+https://imgz.app/400x300
 ```
 
 <div align="center">
-  <img src="https://imgz.io/400x300" alt="Basic example" width="400" height="300" />
+  <img src="https://imgz.app/400x300" alt="Basic example" width="400" height="300" />
 </div>
 
 ### Custom Text
 
 ```
-https://imgz.io/400x300?text=Hello%20World
+https://imgz.app/400x300?text=Hello%20World
 ```
 
 <div align="center">
-  <img src="https://imgz.io/400x300?text=Hello%20World" alt="Custom text example" width="400" height="300" />
+  <img src="https://imgz.app/400x300?text=Hello%20World" alt="Custom text example" width="400" height="300" />
 </div>
 
 ### Custom Background Color
 
 ```
-https://imgz.io/400x300?bg=3b82f6&text=Blue%20Background
+https://imgz.app/400x300?bg=3b82f6&text=Blue%20Background
 ```
 
 <div align="center">
-  <img src="https://imgz.io/400x300?bg=3b82f6&text=Blue%20Background" alt="Custom color example" width="400" height="300" />
+  <img src="https://imgz.app/400x300?bg=3b82f6&text=Blue%20Background" alt="Custom color example" width="400" height="300" />
 </div>
 
 ### Gradient Background
 
 ```
-https://imgz.io/400x300?text=Gradient&bg=f97316-3b82f6-right
+https://imgz.app/400x300?text=Gradient&bg=f97316-3b82f6-right
 ```
 
 <div align="center">
-  <img src="https://imgz.io/400x300?text=Gradient&bg=f97316-3b82f6-right" alt="Gradient example" width="400" height="300" />
+  <img src="https://imgz.app/400x300?text=Gradient&bg=f97316-3b82f6-right" alt="Gradient example" width="400" height="300" />
 </div>
 
 ## 📋 API Reference
@@ -75,7 +75,7 @@ https://imgz.io/400x300?text=Gradient&bg=f97316-3b82f6-right
 ### URL Structure
 
 ```
-https://imgz.io/{width}x{height}?[options]
+https://imgz.app/{width}x{height}?[options]
 ```
 
 ### Path Parameters

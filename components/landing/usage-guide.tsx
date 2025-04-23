@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import { motion, useInView } from "motion/react";
-import { Copy, Check } from "lucide-react";
+import { Copy, Check, Info } from "lucide-react";
 import { useState } from "react";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
@@ -14,6 +14,8 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
+import { fonts } from "@/lib/fonts";
 
 export function UsageGuide() {
   const ref = useRef(null);
@@ -34,37 +36,43 @@ export function UsageGuide() {
       id: "basic",
       title: "Basic Image",
       description: "Generate a 300x200 placeholder image",
-      code: "https://imgz.io/300x200",
+      code: "https://imgz.app/300x200",
     },
     {
       id: "text",
       title: "Custom Text",
       description: "Add custom text to your placeholder",
-      code: "https://imgz.io/400x300?text=Hello+World",
+      code: "https://imgz.app/400x300?text=Hello+World",
     },
     {
       id: "bg",
       title: "Background Color",
       description: "Specify a custom background color",
-      code: "https://imgz.io/500x400?bg=6d28d9",
+      code: "https://imgz.app/500x400?bg=6d28d9",
     },
     {
       id: "bg-gradient",
       title: "Background Gradient",
       description: "Specify a custom background gradient",
-      code: "https://imgz.io/500x400?bg=6d28d9-000000-bottom",
+      code: "https://imgz.app/500x400?bg=6d28d9-000000-bottom",
     },
     {
       id: "format",
       title: "Image Format",
       description: "Specify the image format (png, jpg, svg)",
-      code: "https://imgz.io/500x400?bg=6d28d9&format=svg",
+      code: "https://imgz.app/500x400?bg=6d28d9&format=svg",
+    },
+    {
+      id: "font",
+      title: "Font",
+      description: "Specify the font",
+      code: "https://imgz.app/500x400?bg=6d28d9&font=lato",
     },
     {
       id: "full",
       title: "Complete Example",
       description: "Full example with all parameters",
-      code: "https://imgz.io/600x400?bg=6d28d9&text=Custom+Text&bg=ffffff&format=png",
+      code: "https://imgz.app/600x400?bg=6d28d9&text=Custom+Text&bg=ffffff&format=png",
     },
   ];
 
@@ -78,18 +86,50 @@ export function UsageGuide() {
     {
       name: "bg",
       description: "Background color (HEX without #)",
+      details: (
+        <div className="flex flex-col gap-2 text-xs">
+          <p>
+            You can specify a background color and a background gradient
+            following this format:
+          </p>
+          <pre>
+            <code className="font-bold">color-color-direction</code>
+          </pre>
+          <p>
+            The direction is the direction of the gradient. The possible values
+            are:
+          </p>
+          <pre>
+            <code className="font-bold">top | bottom | left | right</code>
+          </pre>
+        </div>
+      ),
       required: false,
       example: "6d28d9",
     },
     {
-      name: "bg (with gradient and direction)",
-      description: "2 background colors (HEX without #) separate by '-'",
+      name: "font",
+      description: "Font name",
+      details: (
+        <div className="flex flex-col gap-2 text-xs">
+          <p>You can specify a font name following this format:</p>
+          <p>The possible values are:</p>
+          <div className="flex flex-wrap gap-2">
+            {fonts.map((value, index) => (
+              <code key={value.value} className="font-bold">
+                {value.value} {index < fonts.length - 1 && "|"}
+              </code>
+            ))}
+          </div>
+        </div>
+      ),
       required: false,
-      example: "6d28d9-000000-bottom",
+      example: "lato",
     },
     {
       name: "format",
-      description: "Image format (png, jpg, svg)",
+      description: "Image format",
+      values: ["png", "jpg", "svg"],
       required: false,
       example: "png",
     },
@@ -128,7 +168,7 @@ export function UsageGuide() {
                 </p>
 
                 <code className="block p-3 bg-muted rounded mb-4 text-sm">
-                  https://imgz.io/{`{width}`}x{`{height}`}
+                  https://imgz.app/{`{width}`}x{`{height}`}
                 </code>
 
                 <p className="text-sm text-muted-foreground">
@@ -136,7 +176,7 @@ export function UsageGuide() {
                 </p>
 
                 <code className="block p-3 bg-muted rounded my-4 text-sm">
-                  https://imgz.io/300x200?text=Hello&bg=6d28d9
+                  https://imgz.app/300x200?text=Hello&bg=6d28d9
                 </code>
 
                 <Separator className="my-6" />
@@ -152,22 +192,22 @@ export function UsageGuide() {
                     <Button
                       variant="ghost"
                       size="sm"
-                      className="h-6 w-6 p-0"
+                      className="size-6 p-0"
                       onClick={() =>
                         handleCopy(
-                          '<img src="https://imgz.io/300x200" alt="Placeholder" width="300" height="200" />',
+                          '<img src="https://imgz.app/300x200" alt="Placeholder" width="300" height="200" />',
                           "html"
                         )
                       }
                     >
                       {copied["html"] ? (
-                        <Check className="h-3 w-3" />
+                        <Check className="size-3" />
                       ) : (
-                        <Copy className="h-3 w-3" />
+                        <Copy className="size-3" />
                       )}
                     </Button>
                   </div>
-                  <code>{`<img src="https://imgz.io/300x200" alt="Placeholder" width="300" height="200" />`}</code>
+                  <code>{`<img src="https://imgz.app/300x200" alt="Placeholder" width="300" height="200" />`}</code>
                 </div>
               </div>
             </motion.div>
@@ -197,13 +237,13 @@ export function UsageGuide() {
                         <Button
                           variant="ghost"
                           size="sm"
-                          className="absolute right-2 top-2 h-6 w-6 p-0"
+                          className="absolute right-2 top-2 size-6 p-0"
                           onClick={() => handleCopy(example.code, example.id)}
                         >
                           {copied[example.id] ? (
-                            <Check className="h-3 w-3" />
+                            <Check className="size-3" />
                           ) : (
-                            <Copy className="h-3 w-3" />
+                            <Copy className="size-3" />
                           )}
                         </Button>
                         <code className="text-xs md:text-sm break-all">
@@ -241,7 +281,19 @@ export function UsageGuide() {
                       <TableCell className="font-medium">
                         {param.name}
                       </TableCell>
-                      <TableCell>{param.description}</TableCell>
+                      <TableCell className="flex items-center">
+                        {param.description}
+                        {param.details && (
+                          <Popover>
+                            <PopoverTrigger asChild>
+                              <Button variant="ghost" size="sm">
+                                <Info className="size-4" />
+                              </Button>
+                            </PopoverTrigger>
+                            <PopoverContent>{param.details}</PopoverContent>
+                          </Popover>
+                        )}
+                      </TableCell>
                       <TableCell>{param.required ? "Yes" : "No"}</TableCell>
                       <TableCell>
                         <code className="bg-muted p-1 rounded text-xs">

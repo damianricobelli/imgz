@@ -13,6 +13,19 @@ export const metadata: Metadata = {
   title: "imgz | Placeholder Image Generator",
   description:
     "Generate placeholder images on the fly with customizable parameters",
+  icons: {
+    icon: "/favicon.ico",
+  },
+  openGraph: {
+    images: [
+      {
+        url: "https://imgz.app/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "imgz | Placeholder Image Generator",
+      },
+    ],
+  },
 };
 
 export default function RootLayout({

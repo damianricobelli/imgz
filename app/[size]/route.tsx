@@ -2,12 +2,26 @@ import { ImageResponse } from "next/og";
 import { type NextRequest } from "next/server";
 import { getContrastColor } from "@/lib/get-contrast-color";
 import satori from "satori";
-import { readFileSync } from "node:fs";
 import sharp from "sharp";
 
-const font = readFileSync("./public/fonts/Inter-Regular.ttf");
+import { readFileSync } from "node:fs";
 
-// export const runtime = "edge";
+const fonts = {
+  lato: readFileSync("./public/fonts/Lato-Regular.ttf"),
+  lora: readFileSync("./public/fonts/Lora-Regular.ttf"),
+  montserrat: readFileSync("./public/fonts/Montserrat-Regular.ttf"),
+  "noto-sans": readFileSync("./public/fonts/NotoSans-Regular.ttf"),
+  "open-sans": readFileSync("./public/fonts/OpenSans-Regular.ttf"),
+  oswald: readFileSync("./public/fonts/Oswald-Regular.ttf"),
+  "playfair-display": readFileSync(
+    "./public/fonts/PlayfairDisplay-Regular.ttf"
+  ),
+  poppins: readFileSync("./public/fonts/Poppins-Regular.ttf"),
+  "pt-sans": readFileSync("./public/fonts/PTSans-Regular.ttf"),
+  raleway: readFileSync("./public/fonts/Raleway-Regular.ttf"),
+  roboto: readFileSync("./public/fonts/Roboto-Regular.ttf"),
+  "source-sans": readFileSync("./public/fonts/SourceSans-Regular.ttf"),
+};
 
 export async function GET(
   request: NextRequest,
@@ -17,6 +31,9 @@ export async function GET(
     const { searchParams } = new URL(request.url);
 
     const format = searchParams.get("format") || "png";
+    const font = searchParams.get("font") || "lato";
+
+    const fontData = fonts[font as keyof typeof fonts] || fonts.lato;
 
     const sizeParam = await params;
     const [widthStr, heightStr] = sizeParam.size.split("x");
@@ -83,7 +100,7 @@ export async function GET(
         fonts: [
           {
             name: "sans-serif",
-            data: font,
+            data: fontData,
           },
         ],
       });
@@ -98,6 +115,12 @@ export async function GET(
     const imageResponse = new ImageResponse(template, {
       width,
       height,
+      fonts: [
+        {
+          name: "sans-serif",
+          data: fontData,
+        },
+      ],
       headers: {
         "Content-Type": `image/${format}`,
       },

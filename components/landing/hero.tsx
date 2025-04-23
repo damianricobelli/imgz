@@ -71,7 +71,8 @@ export function Hero() {
             className="text-xl text-muted-foreground mb-8 max-w-3xl mx-auto"
           >
             Create custom placeholder images on-the-fly with a simple URL.
-            Specify dimensions, text, colors, and more with our powerful API.
+            Specify text, font, colors and background with just query
+            parameters.
           </motion.p>
 
           <motion.div
@@ -79,7 +80,7 @@ export function Hero() {
             className="flex flex-col sm:flex-row gap-4 justify-center mb-16"
           >
             <Button size="lg" className="gap-2" asChild>
-              <a href="#examples">
+              <a href="#playground">
                 Get Started
                 <span className="bg-background/20 px-2 py-0.5 rounded text-xs">
                   Free
@@ -107,7 +108,7 @@ export function Hero() {
                     # Basic dimensions
                   </span>
                   <pre className="mt-1 text-primary">
-                    https://imgz.io/400x300
+                    https://imgz.app/400x300
                   </pre>
                 </div>
 
@@ -116,7 +117,7 @@ export function Hero() {
                     # With custom text
                   </span>
                   <pre className="mt-1 text-primary">
-                    https://imgz.io/600x400?text=Hello+World
+                    https://imgz.app/600x400?text=Hello+World
                   </pre>
                 </div>
 
@@ -125,7 +126,7 @@ export function Hero() {
                     # With background color
                   </span>
                   <pre className="mt-1 text-primary">
-                    https://imgz.io/800x600?bg=6d28d9&text=Purple+Background
+                    https://imgz.app/800x600?bg=6d28d9&text=Purple+Background
                   </pre>
                 </div>
 
@@ -134,7 +135,7 @@ export function Hero() {
                     # With gradient background
                   </span>
                   <pre className="mt-1 text-primary">
-                    https://imgz.io/800x600?bg=6d28d9-4c1d95
+                    https://imgz.app/800x600?bg=6d28d9-4c1d95
                   </pre>
                 </div>
               </div>

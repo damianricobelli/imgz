@@ -57,8 +57,11 @@ export function Navbar() {
                 whileHover={{ y: -2 }}
                 transition={{ type: "spring", stiffness: 500 }}
               >
-                <a href="#examples" className="font-medium hover:text-primary">
-                  Examples
+                <a
+                  href="#playground"
+                  className="font-medium hover:text-primary"
+                >
+                  Playground
                 </a>
               </motion.li>
               <motion.li
@@ -84,7 +87,7 @@ export function Navbar() {
               </a>
             </Button>
             <Button asChild>
-              <a href="#examples">Get Started</a>
+              <a href="#playground">Get Started</a>
             </Button>
           </div>
         </div>

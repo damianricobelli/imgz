@@ -49,37 +49,37 @@ export function Features() {
       title: "Custom Dimensions",
       description:
         "Specify any width and height for your placeholder images. Perfect for any design mockup.",
-      icon: <LayoutGrid className="text-primary h-6 w-6" />,
+      icon: <LayoutGrid className="text-primary size-6" />,
     },
     {
       title: "Custom Text",
       description:
         "Add your own text to the placeholder image to provide context or specify usage.",
-      icon: <Type className="text-primary h-6 w-6" />,
+      icon: <Type className="text-primary size-6" />,
     },
     {
       title: "Background Colors",
       description:
-        "Choose from any HEX, RGB, or named color for the image background.",
-      icon: <Palette className="text-primary h-6 w-6" />,
+        "Choose from any HEX color for the image background. You can also use gradients.",
+      icon: <Palette className="text-primary size-6" />,
     },
     {
       title: "Fast Delivery",
       description:
         "Images are delivered through a global CDN for lightning-fast performance.",
-      icon: <Zap className="text-primary h-6 w-6" />,
+      icon: <Zap className="text-primary size-6" />,
     },
     {
-      title: "Advanced Options",
+      title: "Google Fonts",
       description:
-        "Control font size, text color, padding, and more through URL parameters.",
-      icon: <Settings className="text-primary h-6 w-6" />,
+        "Choose from a wide range of Google Fonts to customize your placeholder images.",
+      icon: <Settings className="text-primary size-6" />,
     },
     {
       title: "Format Options",
       description:
-        "Choose between JPG, PNG, and WebP formats to suit your specific needs.",
-      icon: <Layers className="text-primary h-6 w-6" />,
+        "Choose between JPG, PNG, and SVG formats to suit your specific needs.",
+      icon: <Layers className="text-primary size-6" />,
     },
   ];
 
@@ -123,10 +123,13 @@ export function Features() {
           transition={{ delay: 0.6, duration: 0.5 }}
           viewport={{ once: true }}
         >
-          <div className="inline-flex items-center gap-2 text-primary font-medium">
+          <a
+            href="#docs"
+            className="inline-flex items-center gap-2 text-primary font-medium"
+          >
             <span>Learn more about our API</span>
             <ArrowRight size={16} />
-          </div>
+          </a>
         </motion.div>
       </div>
     </section>

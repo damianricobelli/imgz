@@ -43,7 +43,7 @@ export function CTA() {
             viewport={{ once: true }}
           >
             <Button size="lg" className="gap-2" asChild>
-              <a href="#examples">
+              <a href="#playground">
                 Get Started <ArrowRight size={16} />
               </a>
             </Button>

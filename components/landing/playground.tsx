@@ -20,8 +20,9 @@ import { Badge } from "../ui/badge";
 import { useCopyToClipboard } from "@/hooks/use-copy-to-clipboard";
 import { CheckIcon, CopyIcon } from "lucide-react";
 import { toast } from "sonner";
+import { Font, fonts } from "@/lib/fonts";
 
-export function Examples() {
+export function Playground() {
   const { copied, copyToClipboard } = useCopyToClipboard();
 
   const [width, setWidth] = useState(400);
@@ -29,6 +30,8 @@ export function Examples() {
   const [text, setText] = useState("imgz");
 
   const [format, setFormat] = useState<ImageFormat>("png");
+
+  const [font, setFont] = useState<Font>("lato");
 
   const [useGradient, setUseGradient] = useState(false);
   const [gradientDirection, setGradientDirection] =
@@ -45,12 +48,12 @@ export function Examples() {
   ];
 
   const handleTextChange = useCallback((value: string) => {
-    setText(value.slice(0, 50)); // Limit text length
+    setText(value.slice(0, 100)); // Limit text length
   }, []);
 
   const generateImageUrl = (w: number, h: number) => {
     const encodedText = encodeURIComponent(text);
-    const baseUrl = `/${w}x${h}?text=${encodedText}&format=${format}`;
+    const baseUrl = `/${w}x${h}?text=${encodedText}&format=${format}&font=${font}`;
     return useGradient
       ? `${baseUrl}&bg=${bgColor1.replace("#", "")}-${bgColor2.replace(
           "#",
@@ -61,8 +64,10 @@ export function Examples() {
 
   const imageUrl = generateImageUrl(width, height);
 
+  const selectedFont = fonts.find((f) => f.value === font) || fonts[0];
+
   return (
-    <section id="examples" className="py-20 bg-muted/40">
+    <section id="playground" className="py-20 bg-muted/40">
       <div className="container mx-auto px-4">
         <motion.div
           className="text-center max-w-3xl mx-auto mb-16"
@@ -128,7 +133,7 @@ export function Examples() {
                     id="text"
                     value={text}
                     onChange={(e) => handleTextChange(e.target.value)}
-                    maxLength={50}
+                    maxLength={100}
                   />
                 </div>
                 <div className="space-y-2">
@@ -147,6 +152,35 @@ export function Examples() {
                     </SelectContent>
                   </Select>
                 </div>
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="font">Font</Label>
+                <Select
+                  value={font}
+                  onValueChange={(value) => setFont(value as Font)}
+                >
+                  <SelectTrigger
+                    id="font"
+                    className="w-full"
+                    style={{
+                      fontFamily: selectedFont.fontFamily,
+                    }}
+                  >
+                    <SelectValue placeholder="Select font" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {fonts.map((font) => (
+                      <SelectItem
+                        key={font.value}
+                        value={font.value}
+                        style={{ fontFamily: font.fontFamily }}
+                      >
+                        {font.label}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
               </div>
 
               <div className="space-y-4">
@@ -176,32 +210,31 @@ export function Examples() {
                       disabled={!useGradient}
                     />
                   </span>
-                  <div className="space-y-2">
-                    <Label htmlFor="gradient-direction">
-                      Gradient Direction
-                    </Label>
-                    <Select
-                      value={gradientDirection}
-                      onValueChange={(value) =>
-                        setGradientDirection(value as GradientDirection)
-                      }
-                      disabled={!useGradient}
-                    >
-                      <SelectTrigger id="gradient-direction" className="w-full">
-                        <SelectValue placeholder="Select direction" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {gradientDirections.map((direction) => (
-                          <SelectItem
-                            key={direction.value}
-                            value={direction.value}
-                          >
-                            {direction.label}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                  </div>
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="gradient-direction">Gradient Direction</Label>
+                  <Select
+                    value={gradientDirection}
+                    onValueChange={(value) =>
+                      setGradientDirection(value as GradientDirection)
+                    }
+                    disabled={!useGradient}
+                  >
+                    <SelectTrigger id="gradient-direction" className="w-full">
+                      <SelectValue placeholder="Select direction" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {gradientDirections.map((direction) => (
+                        <SelectItem
+                          key={direction.value}
+                          value={direction.value}
+                        >
+                          {direction.label}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
                 </div>
               </div>
 
@@ -229,14 +262,14 @@ export function Examples() {
             viewport={{ once: true }}
             className={cn(
               "rounded-lg overflow-hidden shadow-lg size-full relative",
-              "flex justify-center items-center aspect-square lg:aspect-auto",
-              "font-image"
+              "flex justify-center items-center text-center aspect-square lg:aspect-auto"
             )}
             style={{
               backgroundColor: !useGradient ? bgColor1 : undefined,
               backgroundImage: useGradient
                 ? `linear-gradient(${gradientDirection}, ${bgColor1}, ${bgColor2})`
                 : undefined,
+              fontFamily: selectedFont.fontFamily,
             }}
           >
             <Badge className="absolute top-2 right-2">Preview image</Badge>
