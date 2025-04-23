@@ -3,7 +3,7 @@ import { type NextRequest } from "next/server";
 import { getContrastColor } from "@/lib/get-contrast-color";
 import satori from "satori";
 import { Font } from "@/lib/fonts";
-import { readFileSync } from "fs";
+import { readFileSync } from "node:fs";
 
 export async function GET(
   request: NextRequest,
