@@ -14,15 +14,15 @@
   --font-lato: "Lato", "sans-serif";
   --font-lora: "Lora", "sans-serif";
   --font-montserrat: "Montserrat", "sans-serif";
-  --font-notosans: "NotoSans", "sans-serif";
-  --font-opensans: "OpenSans", "sans-serif";
+  --font-notosans: "Noto Sans", "sans-serif";
+  --font-opensans: "Open Sans", "sans-serif";
   --font-oswald: "Oswald", "sans-serif";
-  --font-playfairdisplay: "PlayfairDisplay", "sans-serif";
+  --font-playfairdisplay: "Playfair Display", "sans-serif";
   --font-poppins: "Poppins", "sans-serif";
-  --font-ptsans: "PTSans", "sans-serif";
+  --font-ptsans: "PT Sans", "sans-serif";
   --font-raleway: "Raleway", "sans-serif";
   --font-roboto: "Roboto", "sans-serif";
-  --font-sourcesans: "SourceSans3", "sans-serif";
+  --font-sourcesans: "Source Sans 3", "sans-serif";
 
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
