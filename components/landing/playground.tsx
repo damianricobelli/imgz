@@ -106,10 +106,9 @@ export function Playground() {
                     value={width}
                     onChange={(e) => setWidth(Number(e.target.value))}
                     onInput={(e) => {
-                      e.currentTarget.value = e.currentTarget.value.replace(
-                        /[^0-9]/g,
-                        ""
-                      );
+                      let value = e.currentTarget.value.replace(/[^0-9]/g, "");
+                      if (Number(value) > 2000) value = "2000";
+                      e.currentTarget.value = value;
                     }}
                   />
                 </div>
@@ -120,10 +119,9 @@ export function Playground() {
                     value={height}
                     onChange={(e) => setHeight(Number(e.target.value))}
                     onInput={(e) => {
-                      e.currentTarget.value = e.currentTarget.value.replace(
-                        /[^0-9]/g,
-                        ""
-                      );
+                      let value = e.currentTarget.value.replace(/[^0-9]/g, "");
+                      if (Number(value) > 2000) value = "2000";
+                      e.currentTarget.value = value;
                     }}
                   />
                 </div>
