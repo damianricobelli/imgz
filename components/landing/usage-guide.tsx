@@ -96,8 +96,8 @@ export function UsageGuide() {
             <code className="font-bold">color-color-direction</code>
           </pre>
           <p>
-            The direction is the direction of the gradient. The possible values
-            are:
+            The direction is the direction of the gradient and can be one of the
+            following:
           </p>
           <pre>
             <code className="font-bold">top | bottom | left | right</code>
@@ -112,8 +112,7 @@ export function UsageGuide() {
       description: "Font name",
       details: (
         <div className="flex flex-col gap-2 text-xs">
-          <p>You can specify a font name following this format:</p>
-          <p>The possible values are:</p>
+          <p>You can specify a font name following this possible values:</p>
           <div className="flex flex-wrap gap-2">
             {fonts.map((value, index) => (
               <code key={value.value} className="font-bold">
@@ -129,7 +128,11 @@ export function UsageGuide() {
     {
       name: "format",
       description: "Image format",
-      values: ["png", "jpg", "webp", "svg"],
+      details: (
+        <pre className="text-xs">
+          <code className="font-bold">png | jpg | webp | svg</code>
+        </pre>
+      ),
       required: false,
       example: "png",
     },
@@ -290,7 +293,9 @@ export function UsageGuide() {
                                 <Info className="size-4" />
                               </Button>
                             </PopoverTrigger>
-                            <PopoverContent>{param.details}</PopoverContent>
+                            <PopoverContent className="max-w-max">
+                              {param.details}
+                            </PopoverContent>
                           </Popover>
                         )}
                       </TableCell>

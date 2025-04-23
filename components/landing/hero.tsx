@@ -138,6 +138,14 @@ export function Hero() {
                     https://imgz.app/800x600?bg=6d28d9-4c1d95
                   </pre>
                 </div>
+                <div>
+                  <span className="text-muted-foreground">
+                    # With image format
+                  </span>
+                  <pre className="mt-1 text-primary">
+                    https://imgz.app/800x600?format=webp
+                  </pre>
+                </div>
               </div>
             </div>
           </motion.div>
