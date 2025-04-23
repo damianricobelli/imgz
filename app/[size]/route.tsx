@@ -3,8 +3,6 @@ import { type NextRequest } from "next/server";
 import { getContrastColor } from "@/lib/get-contrast-color";
 import satori from "satori";
 
-export const runtime = "edge";
-
 export async function GET(
   request: NextRequest,
   { params }: { params: Promise<{ size: string }> }
