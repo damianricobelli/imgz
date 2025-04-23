@@ -11,12 +11,11 @@
 
 ## ✨ Features
 
-- 🖼️ **Simple URL Structure** - Generate images with a clean, RESTful URL pattern
+- 🖼️ **Simple URL Structure** - Generate images with a clean URL pattern
 - 📏 **Custom Dimensions** - Specify any width and height directly in the URL path
-- 🔤 **Custom Text** - Add your own text to the placeholder image
+- 🔤 **Custom Text & Google Fonts** - Add your own text to the placeholder image
 - 🎨 **Custom Colors** - Set solid background colors or beautiful gradients
 - 📱 **Responsive** - Perfect for responsive design testing
-- 🚀 **Edge Runtime** - Blazing fast image generation using Next.js Edge Runtime
 
 ## 🚀 Quick Start
 
@@ -86,11 +85,12 @@ https://imgz.app/{width}x{height}?[options]
 
 ### Query Parameters
 
-| Parameter | Description                           | Default    | Example              |
-| --------- | ------------------------------------- | ---------- | -------------------- |
-| `text`    | Text to display on the image          | `"imgz"`   | `text=Hello%20World` |
-| `bg`      | Background color (hex without #)      | `"4e4e4e"` | `bg=3b82f6`          |
-| `format`  | Image format (png, jpg, webp and svg) | `png`      | `format=svg`         |
+| Parameter | Description                                 | Default    | Example              |
+| --------- | ------------------------------------------- | ---------- | -------------------- |
+| `text`    | Text to display on the image                | `"imgz"`   | `text=Hello%20World` |
+| `bg`      | Background color (hex without #)            | `"4e4e4e"` | `bg=3b82f6`          |
+| `format`  | Image format (png, jpg, webp and svg)       | `png`      | `format=svg`         |
+| `font`    | Font family (lato, roboto, montserrat, etc) | `"lato"`   | `font=lato`          |
 
 ### Gradient Directions
 
