@@ -5,22 +5,23 @@ import satori from "satori";
 import sharp from "sharp";
 
 import { readFileSync } from "node:fs";
+import { Font } from "@/lib/fonts";
 
-const fonts = {
-  lato: readFileSync("./public/fonts/Lato-Regular.ttf"),
-  lora: readFileSync("./public/fonts/Lora-Regular.ttf"),
-  montserrat: readFileSync("./public/fonts/Montserrat-Regular.ttf"),
-  "noto-sans": readFileSync("./public/fonts/NotoSans-Regular.ttf"),
-  "open-sans": readFileSync("./public/fonts/OpenSans-Regular.ttf"),
-  oswald: readFileSync("./public/fonts/Oswald-Regular.ttf"),
+const fonts: Record<Font, Buffer> = {
+  lato: readFileSync("./app/[size]/fonts/Lato-Regular.ttf"),
+  lora: readFileSync("./app/[size]/fonts/Lora-Regular.ttf"),
+  montserrat: readFileSync("./app/[size]/fonts/Montserrat-Regular.ttf"),
+  "noto-sans": readFileSync("./app/[size]/fonts/NotoSans-Regular.ttf"),
+  "open-sans": readFileSync("./app/[size]/fonts/OpenSans-Regular.ttf"),
+  oswald: readFileSync("./app/[size]/fonts/Oswald-Regular.ttf"),
   "playfair-display": readFileSync(
-    "./public/fonts/PlayfairDisplay-Regular.ttf"
+    "./app/[size]/fonts/PlayfairDisplay-Regular.ttf"
   ),
-  poppins: readFileSync("./public/fonts/Poppins-Regular.ttf"),
-  "pt-sans": readFileSync("./public/fonts/PTSans-Regular.ttf"),
-  raleway: readFileSync("./public/fonts/Raleway-Regular.ttf"),
-  roboto: readFileSync("./public/fonts/Roboto-Regular.ttf"),
-  "source-sans": readFileSync("./public/fonts/SourceSans-Regular.ttf"),
+  poppins: readFileSync("./app/[size]/fonts/Poppins-Regular.ttf"),
+  "pt-sans": readFileSync("./app/[size]/fonts/PTSans-Regular.ttf"),
+  raleway: readFileSync("./app/[size]/fonts/Raleway-Regular.ttf"),
+  roboto: readFileSync("./app/[size]/fonts/Roboto-Regular.ttf"),
+  "source-sans-3": readFileSync("./app/[size]/fonts/SourceSans3-Regular.ttf"),
 };
 
 export async function GET(
