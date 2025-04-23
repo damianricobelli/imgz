@@ -2,6 +2,8 @@ import { ImageResponse } from "next/og";
 import { type NextRequest } from "next/server";
 import { getContrastColor } from "@/lib/get-contrast-color";
 import satori from "satori";
+import { Font } from "@/lib/fonts";
+import { readFileSync } from "fs";
 
 export async function GET(
   request: NextRequest,
@@ -112,36 +114,17 @@ export async function GET(
   }
 }
 
-const fonts = {
-  lato: fetch(
-    new URL("../../public/fonts/Lato-Regular.ttf", import.meta.url).href
-  ).then((res) => res.arrayBuffer()),
-  lora: fetch(
-    new URL("../../public/fonts/Lora-Regular.ttf", import.meta.url).href
-  ).then((res) => res.arrayBuffer()),
-  montserrat: fetch(
-    new URL("../../public/fonts/Montserrat-Regular.ttf", import.meta.url).href
-  ).then((res) => res.arrayBuffer()),
-  "open-sans": fetch(
-    new URL("../../public/fonts/OpenSans-Regular.ttf", import.meta.url).href
-  ).then((res) => res.arrayBuffer()),
-  oswald: fetch(
-    new URL("../../public/fonts/Oswald-Regular.ttf", import.meta.url).href
-  ).then((res) => res.arrayBuffer()),
-  "playfair-display": fetch(
-    new URL("../../public/fonts/PlayfairDisplay-Regular.ttf", import.meta.url)
-      .href
-  ).then((res) => res.arrayBuffer()),
-  poppins: fetch(
-    new URL("../../public/fonts/Poppins-Regular.ttf", import.meta.url).href
-  ).then((res) => res.arrayBuffer()),
-  "pt-sans": fetch(
-    new URL("../../public/fonts/PTSans-Regular.ttf", import.meta.url).href
-  ).then((res) => res.arrayBuffer()),
-  raleway: fetch(
-    new URL("../../public/fonts/Raleway-Regular.ttf", import.meta.url).href
-  ).then((res) => res.arrayBuffer()),
-  roboto: fetch(
-    new URL("../../public/fonts/Roboto-Regular.ttf", import.meta.url).href
-  ).then((res) => res.arrayBuffer()),
+const fonts: Record<Font, Buffer> = {
+  lato: readFileSync("./app/[size]/fonts/Lato-Regular.ttf"),
+  lora: readFileSync("./app/[size]/fonts/Lora-Regular.ttf"),
+  montserrat: readFileSync("./app/[size]/fonts/Montserrat-Regular.ttf"),
+  "open-sans": readFileSync("./app/[size]/fonts/OpenSans-Regular.ttf"),
+  oswald: readFileSync("./app/[size]/fonts/Oswald-Regular.ttf"),
+  "playfair-display": readFileSync(
+    "./app/[size]/fonts/PlayfairDisplay-Regular.ttf"
+  ),
+  poppins: readFileSync("./app/[size]/fonts/Poppins-Regular.ttf"),
+  "pt-sans": readFileSync("./app/[size]/fonts/PTSans-Regular.ttf"),
+  raleway: readFileSync("./app/[size]/fonts/Raleway-Regular.ttf"),
+  roboto: readFileSync("./app/[size]/fonts/Roboto-Regular.ttf"),
 };
