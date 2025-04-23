@@ -21,6 +21,7 @@ import { useCopyToClipboard } from "@/hooks/use-copy-to-clipboard";
 import { CheckIcon, CopyIcon } from "lucide-react";
 import { toast } from "sonner";
 import { Font, fonts } from "@/lib/fonts";
+import { ImageFormat } from "@/lib/image-format";
 
 export function Playground() {
   const { copied, copyToClipboard } = useCopyToClipboard();
@@ -151,6 +152,7 @@ export function Playground() {
                       <SelectItem value="png">PNG</SelectItem>
                       <SelectItem value="jpg">JPG</SelectItem>
                       <SelectItem value="svg">SVG</SelectItem>
+                      <SelectItem value="webp">WebP</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
@@ -291,4 +293,3 @@ export function Playground() {
 }
 
 type GradientDirection = "to bottom" | "to top" | "to right" | "to left";
-type ImageFormat = "png" | "jpg" | "svg";

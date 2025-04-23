@@ -86,11 +86,11 @@ https://imgz.app/{width}x{height}?[options]
 
 ### Query Parameters
 
-| Parameter | Description                      | Default    | Example              |
-| --------- | -------------------------------- | ---------- | -------------------- |
-| `text`    | Text to display on the image     | `"imgz"`   | `text=Hello%20World` |
-| `bg`      | Background color (hex without #) | `"4e4e4e"` | `bg=3b82f6`          |
-| `format`  | Image format (png, jpg, svg)     | `png`      | `format=svg`         |
+| Parameter | Description                           | Default    | Example              |
+| --------- | ------------------------------------- | ---------- | -------------------- |
+| `text`    | Text to display on the image          | `"imgz"`   | `text=Hello%20World` |
+| `bg`      | Background color (hex without #)      | `"4e4e4e"` | `bg=3b82f6`          |
+| `format`  | Image format (png, jpg, webp and svg) | `png`      | `format=svg`         |
 
 ### Gradient Directions
 

@@ -78,7 +78,7 @@ export function Features() {
     {
       title: "Format Options",
       description:
-        "Choose between JPG, PNG, and SVG formats to suit your specific needs.",
+        "Choose between JPG, PNG, WebP and SVG formats to suit your specific needs.",
       icon: <Layers className="text-primary size-6" />,
     },
   ];

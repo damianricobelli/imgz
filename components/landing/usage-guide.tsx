@@ -59,7 +59,7 @@ export function UsageGuide() {
     {
       id: "format",
       title: "Image Format",
-      description: "Specify the image format (png, jpg, svg)",
+      description: "Specify the image format (png, jpg, webp, svg)",
       code: "https://imgz.app/500x400?bg=6d28d9&format=svg",
     },
     {
@@ -129,7 +129,7 @@ export function UsageGuide() {
     {
       name: "format",
       description: "Image format",
-      values: ["png", "jpg", "svg"],
+      values: ["png", "jpg", "webp", "svg"],
       required: false,
       example: "png",
     },
