@@ -140,16 +140,20 @@ export async function GET(
 }
 
 const fonts: Record<Font, Buffer> = {
-  lato: readFileSync("./public/fonts/Lato-Regular.ttf"),
-  lora: readFileSync("./public/fonts/Lora-Regular.ttf"),
-  montserrat: readFileSync("./public/fonts/Montserrat-Regular.ttf"),
-  "open-sans": readFileSync("./public/fonts/OpenSans-Regular.ttf"),
-  oswald: readFileSync("./public/fonts/Oswald-Regular.ttf"),
-  "playfair-display": readFileSync(
-    "./public/fonts/PlayfairDisplay-Regular.ttf"
+  lato: readFileSync(`${process.cwd()}/public/fonts/Lato-Regular.ttf`),
+  lora: readFileSync(`${process.cwd()}/public/fonts/Lora-Regular.ttf`),
+  montserrat: readFileSync(
+    `${process.cwd()}/public/fonts/Montserrat-Regular.ttf`
   ),
-  poppins: readFileSync("./public/fonts/Poppins-Regular.ttf"),
-  "pt-sans": readFileSync("./public/fonts/PTSans-Regular.ttf"),
-  raleway: readFileSync("./public/fonts/Raleway-Regular.ttf"),
-  roboto: readFileSync("./public/fonts/Roboto-Regular.ttf"),
+  "open-sans": readFileSync(
+    `${process.cwd()}/public/fonts/OpenSans-Regular.ttf`
+  ),
+  oswald: readFileSync(`${process.cwd()}/public/fonts/Oswald-Regular.ttf`),
+  "playfair-display": readFileSync(
+    `${process.cwd()}/public/fonts/PlayfairDisplay-Regular.ttf`
+  ),
+  poppins: readFileSync(`${process.cwd()}/public/fonts/Poppins-Regular.ttf`),
+  "pt-sans": readFileSync(`${process.cwd()}/public/fonts/PTSans-Regular.ttf`),
+  raleway: readFileSync(`${process.cwd()}/public/fonts/Raleway-Regular.ttf`),
+  roboto: readFileSync(`${process.cwd()}/public/fonts/Roboto-Regular.ttf`),
 };
