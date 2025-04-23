@@ -11,7 +11,6 @@ const fonts: Record<Font, Buffer> = {
   lato: readFileSync("./app/[size]/fonts/Lato-Regular.ttf"),
   lora: readFileSync("./app/[size]/fonts/Lora-Regular.ttf"),
   montserrat: readFileSync("./app/[size]/fonts/Montserrat-Regular.ttf"),
-  "noto-sans": readFileSync("./app/[size]/fonts/NotoSans-Regular.ttf"),
   "open-sans": readFileSync("./app/[size]/fonts/OpenSans-Regular.ttf"),
   oswald: readFileSync("./app/[size]/fonts/Oswald-Regular.ttf"),
   "playfair-display": readFileSync(
@@ -21,7 +20,6 @@ const fonts: Record<Font, Buffer> = {
   "pt-sans": readFileSync("./app/[size]/fonts/PTSans-Regular.ttf"),
   raleway: readFileSync("./app/[size]/fonts/Raleway-Regular.ttf"),
   roboto: readFileSync("./app/[size]/fonts/Roboto-Regular.ttf"),
-  "source-sans-3": readFileSync("./app/[size]/fonts/SourceSans3-Regular.ttf"),
 };
 
 export async function GET(

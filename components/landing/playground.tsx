@@ -66,6 +66,8 @@ export function Playground() {
 
   const selectedFont = fonts.find((f) => f.value === font) || fonts[0];
 
+  console.log(selectedFont.fontFamily);
+
   return (
     <section id="playground" className="py-20 bg-muted/40">
       <div className="container mx-auto px-4">

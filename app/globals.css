@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Lato&family=Lora:ital@0;1&family=Montserrat:ital@0;1&family=Noto+Sans:ital@0;1&family=Open+Sans:ital@0;1&family=Oswald&family=PT+Sans&family=Playfair+Display:ital@0;1&family=Poppins&family=Raleway:ital@0;1&family=Roboto:ital@0;1&family=Source+Sans+3:ital@0;1&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lato&family=Lora:ital@0;1&family=Montserrat:ital@0;1&family=Open+Sans:ital@0;1&family=Oswald&family=PT+Sans&family=Playfair+Display:ital@0;1&family=Poppins&family=Raleway:ital@0;1&family=Roboto:ital@0;1&display=swap");
 
 @import "tailwindcss";
 @import "tw-animate-css";
@@ -14,7 +14,6 @@
   --font-lato: "Lato", "sans-serif";
   --font-lora: "Lora", "sans-serif";
   --font-montserrat: "Montserrat", "sans-serif";
-  --font-notosans: "Noto Sans", "sans-serif";
   --font-opensans: "Open Sans", "sans-serif";
   --font-oswald: "Oswald", "sans-serif";
   --font-playfairdisplay: "Playfair Display", "sans-serif";
@@ -22,7 +21,6 @@
   --font-ptsans: "PT Sans", "sans-serif";
   --font-raleway: "Raleway", "sans-serif";
   --font-roboto: "Roboto", "sans-serif";
-  --font-sourcesans: "Source Sans 3", "sans-serif";
 
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
