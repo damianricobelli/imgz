@@ -6,6 +6,7 @@ import { readFileSync } from "node:fs";
 import sharp from "sharp";
 import { Font } from "@/lib/fonts";
 import { ImageFormat } from "@/lib/image-format";
+import { Redis } from "@upstash/redis";
 
 export const runtime = "nodejs";
 
@@ -110,11 +111,25 @@ async function convertToFormat(
 
 //#endregion
 
+const redis = new Redis({
+  url: process.env.UPSTASH_REDIS_REST_URL,
+  token: process.env.UPSTASH_REDIS_REST_TOKEN,
+});
+
 export async function GET(
   request: NextRequest,
   { params }: { params: Promise<{ size: string }> }
 ) {
   try {
+    const url = request.url;
+    const cached = await redis.get<{ format: string; buffer: string }>(url);
+    if (cached) {
+      const { format, buffer } = cached;
+      return new Response(Buffer.from(buffer, "base64"), {
+        headers: { "Content-Type": `image/${format}` },
+      });
+    }
+
     const { searchParams } = new URL(request.url);
     const format = (searchParams.get("format") ||
       DEFAULTS.format) as ImageFormat;
@@ -132,31 +147,46 @@ export async function GET(
 
     const template = buildTemplate(text, background, fontSize, textColor);
 
+    let response: Response;
+    let buffer: Buffer;
+
     if (format === "svg") {
       const svg = await satori(template, {
         width,
         height,
         fonts: [{ name: "sans-serif", data: fontData, weight: 400 }],
       });
-      return new Response(svg, {
+      response = new Response(svg, {
         headers: { "Content-Type": "image/svg+xml" },
       });
+      buffer = Buffer.from(svg);
+    } else {
+      const imageResponse = new ImageResponse(template, {
+        width,
+        height,
+        fonts: [{ name: "sans-serif", data: fontData, weight: 400 }],
+        headers: { "Content-Type": `image/${format}` },
+      });
+
+      if (format === "png") {
+        response = imageResponse;
+        buffer = Buffer.from(await imageResponse.arrayBuffer());
+      } else {
+        const arrayBuffer = await imageResponse.arrayBuffer();
+        buffer = await convertToFormat(arrayBuffer, format);
+        response = new Response(buffer, {
+          headers: { "Content-Type": `image/${format}` },
+        });
+      }
     }
 
-    const imageResponse = new ImageResponse(template, {
-      width,
-      height,
-      fonts: [{ name: "sans-serif", data: fontData, weight: 400 }],
-      headers: { "Content-Type": `image/${format}` },
+    // Save to Redis
+    await redis.set(url, {
+      format,
+      buffer: buffer.toString("base64"),
     });
 
-    if (format === "png") return imageResponse;
-
-    const buffer = await imageResponse.arrayBuffer();
-    const converted = await convertToFormat(buffer, format);
-    return new Response(converted, {
-      headers: { "Content-Type": `image/${format}` },
-    });
+    return response;
   } catch (error) {
     console.error(error);
     return new Response("Failed to generate image", { status: 500 });
