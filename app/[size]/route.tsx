@@ -17,7 +17,7 @@ const DEFAULTS = {
   height: 400,
   font: "lato",
   format: "png",
-  text: "imgz",
+  text: "",
   bgColor: "4e4e4e",
 };
 
@@ -147,7 +147,6 @@ export async function GET(
 
     const template = buildTemplate(text, background, fontSize, textColor);
 
-    let response: Response;
     let buffer: Buffer;
 
     if (format === "svg") {
@@ -156,37 +155,36 @@ export async function GET(
         height,
         fonts: [{ name: "sans-serif", data: fontData, weight: 400 }],
       });
-      response = new Response(svg, {
+      await redis.set(url, {
+        format,
+        buffer: svg,
+      });
+      return new Response(svg, {
         headers: { "Content-Type": "image/svg+xml" },
       });
-      buffer = Buffer.from(svg);
     } else {
       const imageResponse = new ImageResponse(template, {
         width,
         height,
         fonts: [{ name: "sans-serif", data: fontData, weight: 400 }],
-        headers: { "Content-Type": `image/${format}` },
       });
 
       if (format === "png") {
-        response = imageResponse;
         buffer = Buffer.from(await imageResponse.arrayBuffer());
       } else {
         const arrayBuffer = await imageResponse.arrayBuffer();
         buffer = await convertToFormat(arrayBuffer, format);
-        response = new Response(buffer, {
-          headers: { "Content-Type": `image/${format}` },
-        });
       }
+
+      await redis.set(url, {
+        format,
+        buffer: buffer.toString("base64"),
+      });
+
+      return new Response(buffer, {
+        headers: { "Content-Type": `image/${format}` },
+      });
     }
-
-    // Save to Redis
-    await redis.set(url, {
-      format,
-      buffer: buffer.toString("base64"),
-    });
-
-    return response;
   } catch (error) {
     console.error(error);
     return new Response("Failed to generate image", { status: 500 });
